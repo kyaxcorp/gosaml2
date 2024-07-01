@@ -90,8 +90,15 @@ type SAMLServiceProvider struct {
 	// this size during decompression an error will be returned.
 	MaximumDecompressedBodySize int64
 
+	SkipAssertionConditions SkipAssertionConditions
+
 	signingContextMu sync.RWMutex
 	signingContext   *dsig.SigningContext
+}
+
+type SkipAssertionConditions struct {
+	NotBefore bool
+	NotOnOrAfter bool
 }
 
 // SetSPKeyStore sets the encryption key to be used.
